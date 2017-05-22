@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19.05.2017, 10:18:36
+    Author     : Altair
+*/
+
+h1 {
+	font-family: Segoe UI;
+	font-size: 12px;
+	font-style: oblique;
+	font-variant: normal;
+	font-weight: 400;
+        font-color: red;
+	line-height: 12px;
+}
+p {
+	font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+

@@ -30,6 +30,7 @@ public class DBConnection {
                   db_userid, db_password);
          return conn;
       } catch (Exception e) {
+   
          e.printStackTrace();
       }
         return null;

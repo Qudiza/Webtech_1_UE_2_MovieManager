@@ -1,13 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      >
     <h:head>
         <title>insertMovie</title>
         <link rel="stylesheet" type="text/css" href="myStyle.css"/>
         <h:outputStylesheet library="css" name="myStyle.css" />
     </h:head>
     <h:body>
+        
+        <!--TODO-->
+        <script>
+            function addADiv() {
+            var element = document.createElement("p");
+            var text = document.createTextNode("GenreBeispiel");
+            element.appendChild(text);
+            document.getElementById("right").appendChild(element);
+            }
+        </script>
+        
         Hier kannst du einen neuen Film anlegen:
     <h:form>
         <div class="menueField">
@@ -52,16 +65,14 @@
 
                     <div id="right" class="dialogFieldRel">
                         <a>Genre    </a>
+                        <!--Funktion des Button? -->
                         <h:commandButton value="+" action="#{insertMovie.newGenre()}" class="materialButtonBottom">
                     
                         </h:commandButton> <br/>
                         <br/><br/>
-                        <a>Genre 1:</a><br/>
+                        <a>Genre </a><br/>
                         <h:inputText value="#{insertMovie.title}"/> <br/><br/>
-                        <a>Genre 2:</a><br/>
-                        <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
-                        <a>Genre 3:</a><br/>
-                        <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
+                        <h:commandButton value="weiteres Genre eingeben" onclick="addADiv()" />
                     </div>
                     <br/>
                     <h:commandButton value="Film eintragen" action="#{insertMovie.insertMovie()}" class="materialButtonBottom">

@@ -25,30 +25,30 @@ public class Search {
     public Search() {
     }
     
-public Search(String regisseur, int releaseDate, String actor, String genre, String operator, boolean initialise) {
-    this.regisseur = regisseur;
-    this.releaseDate = releaseDate;
-    this.actor = actor;
-    this.genre = genre;
-    this.operator = operator;
+    public Search(String regisseur, int releaseDate, String actor, String genre, String operator, boolean initialise) {
+        this.regisseur = regisseur;
+        this.releaseDate = releaseDate;
+        this.actor = actor;
+        this.genre = genre;
+        this.operator = operator;
 }
 
-private String getMoviesWithRegisseur() throws SQLException{
-    if(!this.regisseur.equals("")){
-            //filme raussuchen in denen regisseur mitspielt
-            
-            //RegisseurID ermitteln
-            Regisseur reg = new Regisseur(this.regisseur);
-            int regisseurId = reg.getRegisseurId();
-            
-            MovieRegisseur mreg = new MovieRegisseur(regisseurId, 0);
-            ArrayList<Integer> al = mreg.getMovieIdsWithRegisseur();
-            
-            return generateWhereOr(al);
-        }else {
-            //regisseur aus Abfrage rauslassen
-        }
-    return "0";
+    private String getMoviesWithRegisseur() throws SQLException{
+        if(!this.regisseur.equals("")){
+                //filme raussuchen in denen regisseur mitspielt
+
+                //RegisseurID ermitteln
+                Regisseur reg = new Regisseur(this.regisseur);
+                int regisseurId = reg.getRegisseurId();
+
+                MovieRegisseur mreg = new MovieRegisseur(regisseurId, 0);
+                ArrayList<Integer> al = mreg.getMovieIdsWithRegisseur();
+
+                return generateWhereOr(al);
+            }else {
+                //regisseur aus Abfrage rauslassen
+            }
+        return "0";
 }
 private String getMoviesWithRleaseDate() throws SQLException{
     if(releaseDate != 0) {

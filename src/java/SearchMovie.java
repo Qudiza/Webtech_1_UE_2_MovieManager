@@ -22,10 +22,11 @@ import javax.enterprise.context.SessionScoped;
 @Named(value = "searchMovie")
 @SessionScoped
 public class SearchMovie implements Serializable {
-private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
-private String regisseur, actor, genre, operator;
-private boolean hasMovies = false, initialise = true;
-private int movieListSize = 0, releaseDate;
+    
+    private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
+    private String regisseur, actor, genre, operator;
+    private boolean hasMovies = false, initialise = true;
+    private int movieListSize = 0, releaseDate;
     
     /**
      * Creates a new instance of SearchMovie
@@ -97,11 +98,11 @@ private int movieListSize = 0, releaseDate;
         initialise = false;
         generateSearchMovie();
         
-        return "SearchMovie";
+        return "searchMovie";
     }
 
         public String searchMovie() {
-        return "SearchMovie";
+        return "searchMovie";
     }
     
     public String getRegisseur() {
@@ -143,7 +144,7 @@ private int movieListSize = 0, releaseDate;
     public void setReleaseDate(int releaseDate) {
         this.releaseDate = releaseDate;
     }
-      public String goToCollection() {
+    public String goToCollection() {
         return "collection";
     }
 }

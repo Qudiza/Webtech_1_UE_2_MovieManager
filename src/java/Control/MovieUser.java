@@ -37,11 +37,13 @@ public class MovieUser {
   }
     public boolean userValidierung() throws SQLException{
         ResultSet rs = DBC.getRS("SELECT userPassword FROM [MovieDB].[dbo].[movieUser] WHERE userName = '" + movieUser.getUserName() + "'");
-        rs.next();
-          
-        if(rs.getString(1).equals(movieUser.getUserPassword())) {
-            return true;
+        //to avoid nullptr exception while trying to login with wrong username
+        if(rs.next()){
+            if(rs.getString(1).equals(movieUser.getUserPassword())) {
+                return true;
+            }
         }
+          
         return false;
     }
     public int getUserIdByUserName() throws SQLException{

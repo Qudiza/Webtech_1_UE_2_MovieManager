@@ -109,9 +109,13 @@ public String generateWhereOr(ArrayList<Integer> al){
         
         String[] lists = new String[4];
         lists[0] = " movieId in(" + getMoviesWithRegisseur() + ")";
+        System.out.println("++++++++++++++++++++ nach list 0 +++++++++++++++++++");
         lists[1] = " movieId in(" + getMoviesWithRleaseDate() + ")";
+        System.out.println("++++++++++++++++++++ nach list 1 +++++++++++++++++++");
         lists[2] = " movieId in(" + getMoviesWithActor() + ")";
+        System.out.println("++++++++++++++++++++ nach list 2 +++++++++++++++++++");
         lists[3] = " movieId in(" + getMoviesWithGenre() + ")";
+        System.out.println("++++++++++++++++++++ nach list 3 +++++++++++++++++++");
         
         for(int i=0;i<=3;i++) {
             if(firstParamInserted && !lists[i].equals(" movieId in(0)")) {

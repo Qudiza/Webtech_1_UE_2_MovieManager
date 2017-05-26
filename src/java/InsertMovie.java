@@ -60,13 +60,13 @@ public ArrayList<String> genreList;
     public String createMovie() {
         return "insertMovie";    
     }
-    public String dynamicTest(){
-        return "Bean";
-    }
     
     public String Logout() {
         Controller.destroyActualSessionId();
         return "index";
+    }
+    public String searchMovie() {
+        return "SearchMovie";
     }
     
     public void insertMovie() throws SQLException{

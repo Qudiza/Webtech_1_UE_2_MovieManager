@@ -13,15 +13,14 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.enterprise.context.Dependent;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Altair
  */
 @Named(value = "searchMovie")
-@Dependent
+@SessionScoped
 public class SearchMovie implements Serializable {
 private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
 private String regisseur, actor, genre, operator;
@@ -37,7 +36,6 @@ private int movieListSize = 0, releaseDate;
                 regisseur = "";
             }
         if(actor == null) {
-            System.out.println("IN IF actor: " + actor);
             actor = "";
         }
         if(genre == null) {
@@ -66,7 +64,6 @@ private int movieListSize = 0, releaseDate;
         System.out.println("initialise: " + initialise);
         
         if(s.getMovieListBySearchQuery(s.generateQuery()) != null) {
-            System.out.println("************************ IN IF ************************");
             movieList = s.getMovieListBySearchQuery(s.generateQuery());
             hasMovies = true;
         } else {
@@ -76,12 +73,14 @@ private int movieListSize = 0, releaseDate;
     }
     
     public int getMovieListSize() {
-        System.out.println("************************ IN getMovieListSize ************************");
+        System.out.println("Listengröße: " + movieListSize);
+        System.out.println("Listen: " + movieList);
         return movieListSize;
     }
     
     public String showMovieListItem(int outer, int inner) throws SQLException {
-        System.out.println("************************ IN showMovieListItem ************************");
+        System.out.println("outer: " + outer);
+        System.out.println("inner: " + inner);
         return movieList.get(outer).get(inner);
     }
     
@@ -95,11 +94,7 @@ private int movieListSize = 0, releaseDate;
     }
     
     public String fillFormularData() throws SQLException{
-        System.out.println("************************ IN fillFormularData ************************");
         initialise = false;
-        
-        System.out.println(releaseDate);
-        
         generateSearchMovie();
         
         return "SearchMovie";
@@ -147,5 +142,8 @@ private int movieListSize = 0, releaseDate;
     }
     public void setReleaseDate(int releaseDate) {
         this.releaseDate = releaseDate;
+    }
+      public String goToCollection() {
+        return "collection";
     }
 }

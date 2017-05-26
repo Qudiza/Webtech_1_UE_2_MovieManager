@@ -11,6 +11,14 @@
     </h:head>
     <h:body>
         <h:form>
+            <div class="menueField">
+                <h:commandButton value="Neuen Film anlegen" action="#{insertMovie.createMovie()}" class="materialButton"/>
+                <h:commandButton value="Filmsammlung" action="#{searchMovie.goToCollection()}" class="materialButton"/>
+                <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
+            </div>
+        </h:form>
+        
+        <h:form>
             <div class="dialogField">
                 <a>regisseur </a><br/>
                 <h:inputText value="#{searchMovie.regisseur}"/> <br/><br/>
@@ -53,4 +61,3 @@
         </h:form>
     </h:body>
 </html>
-

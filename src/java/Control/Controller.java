@@ -22,7 +22,6 @@ public class Controller {
     
     public static void destroyActualSessionId() {
         FacesContext fCtx = FacesContext.getCurrentInstance();
-       fCtx.getExternalContext().invalidateSession();
+        fCtx.getExternalContext().invalidateSession();
     }
-    
 }

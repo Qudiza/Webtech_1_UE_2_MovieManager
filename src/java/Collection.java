@@ -7,10 +7,11 @@
 import Control.Controller;
 import Control.ManageSessionId;
 import Control.MovieCollection;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
@@ -18,11 +19,11 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "collection")
 
-@Dependent
-public class Collection {
-public ArrayList<ArrayList<String>> collectionList = new ArrayList<ArrayList<String>>();
-public boolean collectionHasMovies = false;
-public int collectionListSize = 0;
+@SessionScoped
+public class Collection implements Serializable {
+private ArrayList<ArrayList<String>> collectionList = new ArrayList<ArrayList<String>>();
+private boolean collectionHasMovies = false;
+private int collectionListSize = 0;
 
     public boolean isCollectionHasMovies() {
         return collectionHasMovies;
@@ -46,6 +47,7 @@ public int collectionListSize = 0;
     /**
      * Creates a new instance of Collection
      */
+    
     public Collection() throws SQLException {
         generateCollection();
     }

@@ -47,8 +47,8 @@ public class Testklasse {
     //   moco2.insertMovieCollection();
     //   moco3.insertMovieCollection();
     
-    Search search = new Search("", 2010, "", "", "OR", true);
-    System.out.println(search.generateQuery());
+    Search search = new Search("", 2005, "", "", "AND", true);
+    System.out.println("ERGEBNIS: " + search.generateQuery());
    
    //Collection col = new Collection();
    

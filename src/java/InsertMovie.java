@@ -8,24 +8,27 @@ import Control.Controller;
 import Control.Movie;
 import Control.MovieRegisseur;
 import Control.Regisseur;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+
 
 /**
  *
  * @author Altair
  */
 @Named(value = "insertMovie")
-@Dependent
 
-public class InsertMovie {
-public String title;
-public int releaseDate;
-public String regisseur;
-public ArrayList<String> actorList;
-public ArrayList<String> genreList;
+@SessionScoped
+
+public class InsertMovie implements Serializable {
+private String title;
+private int releaseDate;
+private String regisseur;
+private ArrayList<String> actorList;
+private ArrayList<String> genreList;
 
     /**
      * Creates a new instance of InsertMovie

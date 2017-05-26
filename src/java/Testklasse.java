@@ -49,7 +49,7 @@ public class Testklasse {
     //   moco3.insertMovieCollection();
     //   moco4.insertMovieCollection();
     
-    Search search = new Search("", 2005, "Morgan Freeman", "Thriller", "OR");
+    Search search = new Search("", 2010, "", "", "OR", false);
     System.out.println(search.generateQuery());
    
    //Collection col = new Collection();

@@ -19,12 +19,13 @@ public class Search {
     // werden die anderen Daten nicht eingegeben, wird ein leerer String ("") erwartet
     String regisseur, actor, genre, operator;
     int releaseDate;
+    boolean initialise;
     private DBConnection DBC = new DBConnection();
 
     public Search() {
     }
     
-public Search(String regisseur, int releaseDate, String actor, String genre, String operator) {
+public Search(String regisseur, int releaseDate, String actor, String genre, String operator, boolean initialise) {
     this.regisseur = regisseur;
     this.releaseDate = releaseDate;
     this.actor = actor;

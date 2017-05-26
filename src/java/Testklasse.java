@@ -43,14 +43,12 @@ public class Testklasse {
     //   MovieCollection moco1 = new MovieCollection(2, 3);
     //   MovieCollection moco2 = new MovieCollection(2, 4);
     //   MovieCollection moco3 = new MovieCollection(2, 5);
-    //   MovieCollection moco4 = new MovieCollection(2, 6);
     //   moco1.insertMovieCollection();
     //   moco2.insertMovieCollection();
     //   moco3.insertMovieCollection();
-    //   moco4.insertMovieCollection();
     
     Search search = new Search("", 2010, "", "", "OR", true);
-    System.out.print(search.generateQuery());
+    System.out.println(search.generateQuery());
    
    //Collection col = new Collection();
    

@@ -24,22 +24,47 @@ import javax.faces.bean.ManagedProperty;
 @Dependent
 public class SearchMovie implements Serializable {
 private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
-public String regisseur, actor, genre, operator;
-public boolean hasMovies = false, initialise = true;
-public int movieListSize = 0, releaseDate;
+private String regisseur, actor, genre, operator;
+private boolean hasMovies = false, initialise = true;
+private int movieListSize = 0, releaseDate;
     
     /**
      * Creates a new instance of SearchMovie
      */
     public SearchMovie() throws SQLException {
+        
+        if(regisseur == null) {
+                regisseur = "";
+            }
+        if(actor == null) {
+            System.out.println("IN IF actor: " + actor);
+            actor = "";
+        }
+        if(genre == null) {
+            genre="";
+        }
+       if(operator == null) {
+            operator="OR";
+       }
+        
         if(initialise == false) {
          generateSearchMovie();
+        }
+        else {
         }
     }
 
     public void generateSearchMovie() throws SQLException {
-           Search s = new Search(regisseur, releaseDate, actor, genre, operator, initialise);
+        Search s = new Search(regisseur, releaseDate, actor, genre, operator, initialise);
+        
         System.out.println("************************ IN SearchMovie ************************");
+        System.out.println("regisseur: " + regisseur);
+        System.out.println("releaseDate: " + releaseDate);
+        System.out.println("actor: " + actor);
+        System.out.println("genre: " + genre);
+        System.out.println("operator: " + operator);
+        System.out.println("initialise: " + initialise);
+        
         if(s.getMovieListBySearchQuery(s.generateQuery()) != null) {
             System.out.println("************************ IN IF ************************");
             movieList = s.getMovieListBySearchQuery(s.generateQuery());
@@ -69,14 +94,21 @@ public int movieListSize = 0, releaseDate;
         movcol.insertMovieCollection();
     }
     
-    public void fillFormularData() throws SQLException{
+    public String fillFormularData() throws SQLException{
         System.out.println("************************ IN fillFormularData ************************");
         initialise = false;
+        
+        System.out.println(releaseDate);
+        
         generateSearchMovie();
         
-        
+        return "SearchMovie";
     }
 
+        public String searchMovie() {
+        return "SearchMovie";
+    }
+    
     public String getRegisseur() {
         return regisseur;
     }
@@ -116,5 +148,4 @@ public int movieListSize = 0, releaseDate;
     public void setReleaseDate(int releaseDate) {
         this.releaseDate = releaseDate;
     }
-    
 }

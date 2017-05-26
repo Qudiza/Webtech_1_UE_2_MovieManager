@@ -65,10 +65,7 @@ public ArrayList<String> genreList;
         Controller.destroyActualSessionId();
         return "index";
     }
-    public String searchMovie() {
-        return "SearchMovie";
-    }
-    
+   
     public void insertMovie() throws SQLException{
         //Hier werden die Daten ausgelesen und in die DB eingetragen
         Movie movie = new Movie(title, releaseDate);

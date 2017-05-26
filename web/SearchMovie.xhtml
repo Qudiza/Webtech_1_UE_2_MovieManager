@@ -6,6 +6,8 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Filmsuche</title>
+        <link rel="stylesheet" type="text/css" href="myStyle.css"/>
+        <h:outputStylesheet library="css" name="myStyle.css" />
     </h:head>
     <h:body>
         <h:form>
@@ -45,11 +47,10 @@
                         </c:forEach>
                     <h:commandButton value="+" action="#{searchMovie.addToCollection(o.getIndex())}" class="materialButton"/>
                     <br/>
-                </c:forEach>
-            </c:if>
-        </div>
-    </h:form>
-        
+                    </c:forEach>
+                </c:if>
+            </div>
+        </h:form>
     </h:body>
 </html>
 

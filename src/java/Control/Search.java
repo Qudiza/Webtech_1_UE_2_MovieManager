@@ -105,18 +105,13 @@ public String generateWhereOr(ArrayList<Integer> al){
     
     public String generateQuery() throws SQLException {
         boolean firstParamInserted = false;
-        System.out.println("++++++++++++++++++++ in generateQuery +++++++++++++++++++");
         String query = "SELECT title, releaseDate FROM movie WHERE";
         
         String[] lists = new String[4];
         lists[0] = " movieId in(" + getMoviesWithRegisseur() + ")";
-        System.out.println("++++++++++++++++++++ nach list 0 +++++++++++++++++++");
         lists[1] = " movieId in(" + getMoviesWithRleaseDate() + ")";
-        System.out.println("++++++++++++++++++++ nach list 1 +++++++++++++++++++");
         lists[2] = " movieId in(" + getMoviesWithActor() + ")";
-        System.out.println("++++++++++++++++++++ nach list 2 +++++++++++++++++++");
         lists[3] = " movieId in(" + getMoviesWithGenre() + ")";
-        System.out.println("++++++++++++++++++++ nach list 3 +++++++++++++++++++");
         
         for(int i=0;i<=3;i++) {
             if(firstParamInserted && !lists[i].equals(" movieId in(0)")) {
@@ -127,7 +122,7 @@ public String generateWhereOr(ArrayList<Integer> al){
                 firstParamInserted = true;
             }
         }
-        System.out.println("++++++++++++++++++++ kurz vor return query +++++++++++++++++++");
+        System.out.println(query);
         return query;
     }
     
@@ -135,12 +130,15 @@ public String generateWhereOr(ArrayList<Integer> al){
         ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>(2);
          ResultSet rs = DBC.getRS(query);
 System.out.println("++++++++++++++++++++ Fehler ist in getMovieListBySearchQuery +++++++++++++++++++");
+System.out.println(query);
         if(!rs.next())
         {
             return null;
         } else {
             int i = 0;
+            System.out.println("++++++++++++++++++++ in else +++++++++++++++++++");
             while(rs.next()){
+                System.out.println("++++++++++++++++++++ in while +++++++++++++++++++");
                 movieList.add(new ArrayList<>());
 
                 movieList.get(i).add(rs.getString(1));

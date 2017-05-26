@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedProperty;
 
 /**
  *
@@ -23,8 +24,13 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class SearchMovie implements Serializable {
 private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
-public String regisseur, actor, genre, operator;
-public int releaseDate;
+
+@ManagedProperty(value = "") private String regisseur;
+@ManagedProperty(value = "") private String actor;
+@ManagedProperty(value = "") private String genre;
+@ManagedProperty(value = "OR") private String operator;
+@ManagedProperty(value = "") private int releaseDate;
+
 public boolean hasMovies = false;
 public int movieListSize = 0;
     
@@ -35,6 +41,7 @@ public int movieListSize = 0;
         Search s = new Search(regisseur, releaseDate, actor, genre, operator);
         System.out.println("************************ IN SearchMovie ************************");
         if(s.getMovieListBySearchQuery(s.generateQuery()) != null) {
+            System.out.println("************************ IN IF ************************");
             movieList = s.getMovieListBySearchQuery(s.generateQuery());
             hasMovies = true;
         } else {
@@ -66,4 +73,57 @@ public int movieListSize = 0;
         System.out.println("************************ IN fillFormularData ************************");
         
     }
+
+    public String getRegisseur() {
+        return regisseur;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public boolean isHasMovies() {
+        return hasMovies;
+    }
+
+    public void setRegisseur(String regisseur) {
+        this.regisseur = regisseur;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
+    }
+
+    public void setReleaseDate(int releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setHasMovies(boolean hasMovies) {
+        this.hasMovies = hasMovies;
+    }
+
+    public void setMovieListSize(int movieListSize) {
+        this.movieListSize = movieListSize;
+    }
+    
+    
+    
+    
+    
 }

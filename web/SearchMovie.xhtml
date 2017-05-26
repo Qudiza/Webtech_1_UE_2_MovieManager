@@ -9,38 +9,11 @@
     </h:head>
     <h:body>
         <div class="dialogField">
-                    <a>regisseur </a><br/>
-                    <h:inputText value="#{searchMovie.regisseur}"/> <br/><br/>
-                    <a>releaseDate </a><br/>
-                    <h:inputText value="#{searchMovie.releaseDate}"/> <br/><br/>
-                    <a>actor </a><br/>
-                    <h:inputText value="#{searchMovie.actor}"/> <br/><br/>
-                    <a>genre </a><br/>
-                    <h:inputText value="#{searchMovie.genre}"/> <br/><br/>
-                    <h:selectOneRadio value="#{searchMovie.operator}">
-                        <f:selectItem itemValue="OR" itemLabel="ODER" />
-                        &nbsp;
-                        <f:selectItem itemValue="AND" itemLabel="UND" />
-                    </h:selectOneRadio>
-                    <br/>
-                    <h:commandButton value="Suchen" action="#{searchMovie.fillFormularData}" class="materialButton">
-                    </h:commandButton>
+            <a>regisseur </a><br/>
+            <h:inputText value="#{searchMovie.regisseur}"/> <br/><br/>
+            
+            
         </div>
-        <h:form>
-        <div class="table">
-                <c:if test="${searchMovie.movieHasMovies}">
-                    <c:forEach varStatus="o" begin="0" end="#{searchMovie.getMovieListSize()-1}" step="1">
-                        <c:forEach varStatus="i" begin="0" end="1" step="1">
-                            <h:outputText value="#{searchMovie.showMovieListItem(o.getIndex(),i.getIndex())}"/>
-                            <!-- Tab: -->
-                            &nbsp;
-                        </c:forEach>
-                        <h:commandButton value="+" action="#{searchMovie.addToCollection(o.getIndex())}" class="materialButton">
-                    <br/>
-                    </c:forEach>
-                 </c:if>
-        </div>
-    </h:form>
     </h:body>
 </html>
 

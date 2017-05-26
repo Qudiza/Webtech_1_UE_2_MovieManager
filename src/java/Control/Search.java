@@ -30,6 +30,7 @@ public Search(String regisseur, int releaseDate, String actor, String genre, Str
     this.actor = actor;
     this.genre = genre;
     this.operator = operator;
+    System.out.println("############### new search wurde erstellt #########################");
 }
 
 private String getMoviesWithRegisseur() throws SQLException{
@@ -103,7 +104,7 @@ public String generateWhereOr(ArrayList<Integer> al){
     
     public String generateQuery() throws SQLException {
         boolean firstParamInserted = false;
-        
+        System.out.println("++++++++++++++++++++ in generateQuery +++++++++++++++++++");
         String query = "SELECT title, releaseDate FROM movie WHERE";
         
         String[] lists = new String[4];
@@ -121,13 +122,14 @@ public String generateWhereOr(ArrayList<Integer> al){
                 firstParamInserted = true;
             }
         }
+        System.out.println("++++++++++++++++++++ kurz vor return query +++++++++++++++++++");
         return query;
     }
     
     public ArrayList<ArrayList<String>> getMovieListBySearchQuery(String query) throws SQLException{
         ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>(2);
          ResultSet rs = DBC.getRS(query);
-
+System.out.println("++++++++++++++++++++ Fehler ist in getMovieListBySearchQuery +++++++++++++++++++");
         if(!rs.next())
         {
             return null;
@@ -141,6 +143,7 @@ public String generateWhereOr(ArrayList<Integer> al){
 
                 i++;
             }
+            System.out.println("++++++++++++++++++++ vor return in getMovieListBySearchQuery +++++++++++++++++++");
             return movieList;
         }
         }

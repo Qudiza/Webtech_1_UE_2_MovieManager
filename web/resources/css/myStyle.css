@@ -91,8 +91,8 @@ background-color: #57B5DA;
     background-color: 	#6495ED;
 }
 .table{
-    margin-top: 10%;
-    background: #D7F6F3;
+    margin-top: 5%;
+    background: #50AD9A;
     display: inline-block;
     border-radius: 3px;
     border: 7px solid #D3DFDE;
@@ -107,6 +107,9 @@ background-color: #57B5DA;
     display: inline-block;
     font-weight: 600;
     border:0 none;
+    margin-left: 10px;
+    margin-right: 10px;
+    
 }
 .materialButtonBottom{
     margin-top: 4%;

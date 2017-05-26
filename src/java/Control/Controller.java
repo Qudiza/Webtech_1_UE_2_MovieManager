@@ -20,5 +20,9 @@ public class Controller {
         return session.getId();
     }
     
+    public static void destroyActualSessionId() {
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+       fCtx.getExternalContext().invalidateSession();
+    }
     
 }

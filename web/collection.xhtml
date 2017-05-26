@@ -9,39 +9,31 @@
         <title>Collection</title>
         <link rel="stylesheet" type="text/css" href="myStyle.css"/>
         <h:outputStylesheet library="css" name="myStyle.css" />
+        
     </h:head>
     <h:body>
         Hier siehst du deine persönliche Filmesammlung:
     </h:body>
-    
-    <action execute="#{Collection.generateCollection}" />
-    
-    
+
     <h:form>
         <div class="menueField">
             <h:commandButton value="Neuen Film anlegen" action="#{insertMovie.createMovie()}" class="materialButton"/>
-            <h:commandButton value="dynamic test" action="#{insertMovie.dynamicTest()}" class="materialButton"/>
+            <h:commandButton value="SearchMovie" action="#{searchMovie.searchMovie()}" class="materialButton"/>
+            <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
         </div>
     </h:form>
-    
     <h:form>
         <div class="table">
-            
-            <h:outputText value="#{Collection.collectionList[0][0]}"/>
-            
-            <c:choose>
-                <c:when test="#{Collection.collectionHasMovies}">
-                    <h:dataTable id="row" value="#{Collection.collectionList}" var="row">
-                        <h:column>
-                            <h:dataTable id="col" value="#{row}" var="col">
-                                <h:column>
-                                    <h:outputText id="value" value="#{col}"/>
-                                </h:column>
-                            </h:dataTable>
-                        </h:column>
-                    </h:dataTable>
-                </c:when>
-            </c:choose>
+                <c:if test="${collection.collectionHasMovies}">
+                    <c:forEach varStatus="o" begin="0" end="#{collection.getCollectionListSize()-1}" step="1">
+                        <c:forEach varStatus="i" begin="0" end="1" step="1">
+                            <h:outputText value="#{collection.showCollectionItem(o.getIndex(),i.getIndex())}"/>
+                            <!-- Tab: -->
+                            &nbsp;
+                        </c:forEach>
+                    <br/>
+                    </c:forEach>
+                 </c:if>
         </div>
     </h:form>
 </html>

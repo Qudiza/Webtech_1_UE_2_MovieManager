@@ -9,11 +9,8 @@ import Control.ManageSessionId;
 import Control.MovieCollection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
-
 
 /**
  *
@@ -27,11 +24,11 @@ public ArrayList<ArrayList<String>> collectionList = new ArrayList<ArrayList<Str
 public boolean collectionHasMovies = false;
 public int collectionListSize = 0;
 
-    public void setCollectionHasMovies(boolean collectionHasMovies) {
-        this.collectionHasMovies = collectionHasMovies;
-    }
     public boolean isCollectionHasMovies() {
         return collectionHasMovies;
+    }
+    public void setCollectionHasMovies(boolean collectionHasMovies) {
+        this.collectionHasMovies = collectionHasMovies;
     }
     public ArrayList<ArrayList<String>> getCollectionList() {
         return collectionList;
@@ -39,35 +36,44 @@ public int collectionListSize = 0;
     public void setCollectionList(ArrayList<ArrayList<String>> collectionList) {
         this.collectionList = collectionList;
     }
+    public void setCollectionListSize(int collectionListSize) {
+        this.collectionListSize = collectionListSize;
+    }
+
+    public int getCollectionListSize() {
+        return collectionListSize;
+    }
     /**
      * Creates a new instance of Collection
      */
-    public Collection() {
-        
+    public Collection() throws SQLException {
+        generateCollection();
     }
     
-    public void generateCollection(){
+    public void generateCollection() throws SQLException{
         
         //Anhand der SessionId die userId herausfinden um Collection-Objekt fuer Benutzer anzulegen
         ManageSessionId MSId = new ManageSessionId(Controller.getActualSessionId());
+            MovieCollection moviecollection = new MovieCollection(MSId.getUserIdBySessionId(), 0);
 
-        try {
-            MovieCollection moviecollection;
-            moviecollection = new MovieCollection(MSId.getUserIdBySessionId(), 0);
-            collectionList = moviecollection.getMovieCollectionByUserId();
-            collectionHasMovies = collectionHasMovies();
+            if(moviecollection.getMovieCollectionByUserId(MSId.getUserIdBySessionId()) != null) {
+                collectionList = moviecollection.getMovieCollectionByUserId(MSId.getUserIdBySessionId());
+                collectionHasMovies = true;
+            } else {
+                collectionHasMovies = false;
+            }
             collectionListSize = collectionList.size();
-        } catch (SQLException ex) {
-            Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    }
+    
+    public String showCollectionItem(int outer, int inner) throws SQLException {
+        return collectionList.get(outer).get(inner);
+    }
+    
+    public String Logout() {
+        Controller.destroyActualSessionId();
+        return "index";
     }
     public String navigateToCollection(){
         return"collection";
-    }
-    //Liefert true zurück, wenn die Filmesammlung Filme enthält.
-    public boolean collectionHasMovies(){
-        System.out.println(!collectionList.isEmpty());
-        return !collectionList.isEmpty();
     }
 }

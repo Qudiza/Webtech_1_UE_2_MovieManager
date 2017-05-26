@@ -70,16 +70,7 @@ public class Login implements Serializable {
     }
     public boolean LoginValidation() throws SQLException
     {
-        //ToDo ableich mit DB
         MovieUser loginUser = new MovieUser(username, password);
-        
         return loginUser.userValidierung();
-     /*   
-        if(loginUser.userValidierung())
-        {
-            return true;
-        }
-         return false;
-*/
     }
 }

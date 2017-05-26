@@ -26,9 +26,10 @@ public class ManageSessionId {
     
     //gibt die BenutzerID zurück, 0 wenn SessionId nicht vorhanden ist (=> Sitzung abgelaufen)
     public int getUserIdBySessionId() throws SQLException{
-        ResultSet rs = DBC.getRS("SELECT userId FROM movieUser WHERE sessionId = '" + sessionId + "'");
-        rs.next();
-        if(!rs.isBeforeFirst()) {
+        ResultSet rs = DBC.getRS("SELECT userId FROM [MovieDB].[dbo].[movieUser] WHERE sessionId = '" + sessionId + "'");
+        
+        if(!rs.next())
+        {
             return 0;
         }
         return rs.getInt(1);

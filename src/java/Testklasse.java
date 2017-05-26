@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
 
+
+import Control.Search;
 import java.sql.SQLException;
 
 /**
@@ -48,7 +49,15 @@ public class Testklasse {
     //   moco3.insertMovieCollection();
     //   moco4.insertMovieCollection();
     
-   // Search search = new Search("", 2005, "Morgan Freeman", "Thriller", "OR");
-   // System.out.println(search.generateQuery());
+    Search search = new Search("", 2005, "Morgan Freeman", "Thriller", "OR");
+    System.out.println(search.generateQuery());
+   
+   //Collection col = new Collection();
+   
+   //System.out.println(col.collectionHasMovies);
+   //System.out.println(col.collectionListSize);
+   
+   
+   
     }
 }

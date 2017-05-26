@@ -5,6 +5,7 @@
  */
 package Control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -18,6 +19,10 @@ public class Search {
     // werden die anderen Daten nicht eingegeben, wird ein leerer String ("") erwartet
     String regisseur, actor, genre, operator;
     int releaseDate;
+    private DBConnection DBC = new DBConnection();
+
+    public Search() {
+    }
     
 public Search(String regisseur, int releaseDate, String actor, String genre, String operator) {
     this.regisseur = regisseur;
@@ -118,4 +123,25 @@ public String generateWhereOr(ArrayList<Integer> al){
         }
         return query;
     }
-}
+    
+    public ArrayList<ArrayList<String>> getMovieListBySearchQuery(String query) throws SQLException{
+        ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>(2);
+         ResultSet rs = DBC.getRS(query);
+
+        if(!rs.next())
+        {
+            return null;
+        } else {
+            int i = 0;
+            while(rs.next()){
+                movieList.add(new ArrayList<>());
+
+                movieList.get(i).add(rs.getString(1));
+                movieList.get(i).add(Integer.toString(rs.getInt(2)));
+
+                i++;
+            }
+            return movieList;
+        }
+        }
+    }

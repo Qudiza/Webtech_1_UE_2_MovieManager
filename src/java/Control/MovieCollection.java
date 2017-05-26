@@ -29,11 +29,11 @@ public class MovieCollection {
       DBC.executeQuery("INSERT INTO movieCollection VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
       return true;
   }
-    public ArrayList<ArrayList<String>> getMovieCollectionByUserId() throws SQLException{
+    public ArrayList<ArrayList<String>> getMovieCollectionByUserId(int userId) throws SQLException{
         ArrayList<ArrayList<String>> collection = new ArrayList<ArrayList<String>>(2);
         String query = "SELECT title, releaseDate FROM movie where movieId in ( ";
-        ResultSet rs = DBC.getRS("SELECT movieId FROM movieCollection WHERE userId = '" + movieCollection.getUserId() + "'");
-        
+        ResultSet rs = DBC.getRS("SELECT movieId FROM movieCollection WHERE userId = " + movieCollection.getUserId());
+
         boolean hasMovies = false;
         while(rs.next()){
             query += rs.getString(1) + ",";

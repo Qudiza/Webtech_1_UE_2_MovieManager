@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Control.Controller;
 import Control.Movie;
 import Control.MovieRegisseur;
 import Control.Regisseur;
@@ -61,6 +62,11 @@ public ArrayList<String> genreList;
     }
     public String dynamicTest(){
         return "Bean";
+    }
+    
+    public String Logout() {
+        Controller.destroyActualSessionId();
+        return "index";
     }
     
     public void insertMovie() throws SQLException{

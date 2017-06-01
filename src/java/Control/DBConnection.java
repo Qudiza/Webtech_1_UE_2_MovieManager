@@ -18,20 +18,48 @@ import java.sql.Statement;
 
 public class DBConnection {
     
-    private final String db_connect_string = "jdbc:sqlserver://localhost";
+    //look at constructor
+    private String db_connect_string;
+    
+    //same values for dbsystems
     private final String db_userid = "moviesa";
     private final String db_password = "1234";
     
+    //change this var to your dbsystem used : my or ms
+    private final String db_used = "my";
+    //change this var to your dbsystem used : moviedb or MovieDB
+    private final String db_name = "moviedb";
+    
     private Connection getDBConnection()
     {
-        try {
-         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-         Connection conn = DriverManager.getConnection(db_connect_string,
-                  db_userid, db_password);
-         return conn;
-      } catch (Exception e) {
-   
-         e.printStackTrace();
+        //mssql
+        if(this.getDb_used().equals("ms")){
+            
+            db_connect_string = "jdbc:sqlserver://localhost";
+            try {
+          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+          Connection conn = DriverManager.getConnection(db_connect_string,
+                   db_userid, db_password);
+          return conn;
+       } catch (Exception e) {
+
+          e.printStackTrace();
+       }
+      }
+        //mysql
+        if(this.getDb_used().equals("my")){
+            
+            db_connect_string = "jdbc:mysql://localhost:3306/moviedb";
+            
+            try {
+             Class.forName("com.mysql.jdbc.Driver");
+             Connection conn = DriverManager.getConnection(db_connect_string,
+                      db_userid, db_password);
+             return conn;
+          } catch (Exception e) {
+                System.out.println("exception bei DBConnection try");
+             e.printStackTrace();
+          }
       }
         return null;
     }
@@ -41,6 +69,7 @@ public class DBConnection {
         Connection conn = getDBConnection();
         try{
             Statement statement = conn.createStatement();
+            statement.executeQuery("USE "+this.getDb_name());
             ResultSet rs = statement.executeQuery(query);
         
             return rs;
@@ -54,6 +83,7 @@ public class DBConnection {
         Connection conn = getDBConnection();
         try{
             Statement statement = conn.createStatement();
+            statement.executeQuery("USE "+this.getDb_name());
             statement.executeUpdate(query);
         
             return true;
@@ -62,4 +92,13 @@ public class DBConnection {
         }   
         return false;
     }
+    
+    public String getDb_used() {
+        return db_used;
+    }
+    
+    public String getDb_name(){
+        return db_name;
+    }
+    
 }

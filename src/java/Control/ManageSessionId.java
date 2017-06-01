@@ -21,12 +21,31 @@ public class ManageSessionId {
     }
     
     public void saveSessionId(String username){
-        DBC.executeQuery("UPDATE movieUser SET sessionId ='" + sessionId + "' WHERE userName = '" + username + "'");
+        
+         //mssql
+        if(DBC.getDb_used().equals("ms")){
+            DBC.executeQuery("UPDATE movieUser SET sessionId ='" + sessionId + "' WHERE userName = '" + username + "'");
+            
+        }
+        //mysql
+        else{
+            DBC.executeQuery("UPDATE movieuser SET sessionId ='" + sessionId + "' WHERE userName = '" + username + "'");
+        }
+        
     }
     
     //gibt die BenutzerID zurück, 0 wenn SessionId nicht vorhanden ist (=> Sitzung abgelaufen)
     public int getUserIdBySessionId() throws SQLException{
-        ResultSet rs = DBC.getRS("SELECT userId FROM [MovieDB].[dbo].[movieUser] WHERE sessionId = '" + sessionId + "'");
+        ResultSet rs;
+        
+        //mssql
+        if(DBC.getDb_used().equals("ms")){
+            rs = DBC.getRS("SELECT userId FROM movieUser WHERE sessionId = '" + sessionId + "'");
+        }
+        //mysql
+        else{
+            rs = DBC.getRS("SELECT userId FROM movieuser WHERE sessionId = '" + sessionId + "'");
+        }
         
         if(!rs.next())
         {

@@ -25,14 +25,31 @@ public class MovieCollection {
   //gibt true zurück, wenn Eintrag in MovieCollection erstellt wurde
   
     public boolean insertMovieCollection() throws SQLException {
-      //Eintrag in MovieCollection eintragen
-      DBC.executeQuery("INSERT INTO movieCollection VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
-      return true;
+        //Eintrag in MovieCollection eintragen
+        //mssql
+        if(DBC.getDb_used().equals("ms")){
+            DBC.executeQuery("INSERT INTO movieCollection VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
+        }
+        //mysql
+        else{
+            DBC.executeQuery("INSERT INTO moviecollection VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
+        }
+        return true;
   }
     public ArrayList<ArrayList<String>> getMovieCollectionByUserId(int userId) throws SQLException{
+        
         ArrayList<ArrayList<String>> collection = new ArrayList<ArrayList<String>>(2);
+        
         String query = "SELECT title, releaseDate FROM movie where movieId in ( ";
-        ResultSet rs = DBC.getRS("SELECT movieId FROM movieCollection WHERE userId = " + movieCollection.getUserId());
+        ResultSet rs;
+         //mssql
+        if(DBC.getDb_used().equals("ms")){
+            rs= DBC.getRS("SELECT movieId FROM movieCollection WHERE userId = " + movieCollection.getUserId());
+        }
+        //mysql
+        else{
+            rs= DBC.getRS("SELECT movieId FROM moviecollection WHERE userId = " + movieCollection.getUserId());
+        }
 
         boolean hasMovies = false;
         while(rs.next()){

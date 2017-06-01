@@ -25,11 +25,30 @@ public class MovieRegisseur {
   //gibt true zurück, wenn Eintrag in movieRegisseur erstellt wurde
     public boolean insertMovieRegisseur() throws SQLException {
      //Film eintragen
-     DBC.executeQuery("INSERT INTO movieRegisseur VALUES('" + movieRegisseur.getRegisseurId() + "', " + movieRegisseur.getMovieId() + ")");
+     
+        //mssql
+        if(DBC.getDb_used().equals("ms")){
+            DBC.executeQuery("INSERT INTO movieRegisseur VALUES('" + movieRegisseur.getRegisseurId() + "', " + movieRegisseur.getMovieId() + ")");
+        }
+        //mysql
+        else{
+            DBC.executeQuery("INSERT INTO movieregisseur VALUES('" + movieRegisseur.getRegisseurId() + "', " + movieRegisseur.getMovieId() + ")");
+        }
+     
       return true;
   }
     public ArrayList<Integer> getMovieIdsWithRegisseur() throws SQLException{
-        ResultSet rs = DBC.getRS("SELECT movieId FROM movieRegisseur WHERE regisseurId = " + movieRegisseur.getRegisseurId());
+        
+        ResultSet rs;
+        //mssql
+        if(DBC.getDb_used().equals("ms")){
+            rs = DBC.getRS("SELECT movieId FROM movieRegisseur WHERE regisseurId = " + movieRegisseur.getRegisseurId());
+        }
+        //mysql
+        else{
+            rs = DBC.getRS("SELECT movieId FROM movieregisseur WHERE regisseurId = " + movieRegisseur.getRegisseurId());
+        }
+        
         ArrayList<Integer> result = new ArrayList<Integer>();
         while (rs.next()) {
           result.add(rs.getInt(1));

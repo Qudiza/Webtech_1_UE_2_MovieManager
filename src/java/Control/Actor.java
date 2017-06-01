@@ -24,6 +24,8 @@ public class Actor {
   //gibt true zurück, wenn Schauspieler erstellt wurde
   //gibt false zurück, wenn Schauspieler bereits vorhanden ist
   public boolean insertActor() throws SQLException {
+      
+      
       ResultSet rs = DBC.getRS("SELECT actorName FROM actor");
       while (rs.next()) {
           if(rs.getString(1).equals(actor.getActorName())) {

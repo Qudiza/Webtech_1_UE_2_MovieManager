@@ -26,9 +26,9 @@ public class DBConnection {
     private final String db_password = "1234";
     
     //change this var to your dbsystem used : my or ms
-    private final String db_used = "ms";
+    private final String db_used = "my";
     //change this var to your dbsystem used : moviedb or MovieDB
-    private final String db_name = "MovieDB";
+    private final String db_name = "moviedb";
     
     private Connection getDBConnection()
     {
@@ -67,10 +67,20 @@ public class DBConnection {
     {
         Connection conn = getDBConnection();
         try{
-            Statement statement = conn.createStatement();
-            query = "USE "+this.getDb_name() + " " + query;
-            ResultSet rs = statement.executeQuery(query);
+            
+            ResultSet rs;
+            if(db_used.equals("ms")){
+                
+                Statement statement = conn.createStatement();
+                query = "USE "+this.getDb_name() + " " + query;
+                rs = statement.executeQuery(query);
+            }
+            else{
+                Statement statement = conn.createStatement();
+                statement.executeQuery("USE "+this.getDb_name());
+                rs = statement.executeQuery(query);
         
+            }
             return rs;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,10 +91,17 @@ public class DBConnection {
     public boolean executeQuery(String query) {
         Connection conn = getDBConnection();
         try{
-            Statement statement = conn.createStatement();
-            query = "USE "+this.getDb_name() + " " + query;
-            statement.executeUpdate(query);
+            if(db_used.equals("ms")){
+                Statement statement = conn.createStatement();
+                query = "USE "+this.getDb_name() + " " + query;
+                statement.executeUpdate(query);    
+            }
+            else{
+                Statement statement = conn.createStatement();
+                statement.executeQuery("USE "+this.getDb_name());
+                statement.executeUpdate(query);
         
+            }
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

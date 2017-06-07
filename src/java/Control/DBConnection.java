@@ -79,7 +79,6 @@ public class DBConnection {
                 Statement statement = conn.createStatement();
                 statement.executeQuery("USE "+this.getDb_name());
                 rs = statement.executeQuery(query);
-        
             }
             return rs;
         } catch (SQLException e) {

@@ -74,6 +74,7 @@ private int collectionListSize = 0;
         if(!checkRelevanceOfCollection()) {
             generateCollection();
         }
+        
         return collectionList.get(outer).get(inner);
     }
     

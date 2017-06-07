@@ -44,7 +44,7 @@ insert into movieRegisseur values(2, 2)
 insert into movieRegisseur values(3, 3)
 insert into movieRegisseur values(4, 4)
 
-insert into movieUser values('Ben', '123')
+insert into movieUser (username, userpassword) values('Ben', '123')
 
 insert into movieCollection values(1, 2)
 insert into movieCollection values(1, 4)

@@ -26,9 +26,9 @@ public class DBConnection {
     private final String db_password = "1234";
     
     //change this var to your dbsystem used : my or ms
-    private final String db_used = "my";
+    private final String db_used = "ms";
     //change this var to your dbsystem used : moviedb or MovieDB
-    private final String db_name = "moviedb";
+    private final String db_name = "MovieDB";
     
     private Connection getDBConnection()
     {
@@ -42,7 +42,6 @@ public class DBConnection {
                    db_userid, db_password);
           return conn;
        } catch (Exception e) {
-
           e.printStackTrace();
        }
       }
@@ -69,7 +68,7 @@ public class DBConnection {
         Connection conn = getDBConnection();
         try{
             Statement statement = conn.createStatement();
-            statement.executeQuery("USE "+this.getDb_name());
+            query = "USE "+this.getDb_name() + " " + query;
             ResultSet rs = statement.executeQuery(query);
         
             return rs;
@@ -83,7 +82,7 @@ public class DBConnection {
         Connection conn = getDBConnection();
         try{
             Statement statement = conn.createStatement();
-            statement.executeQuery("USE "+this.getDb_name());
+            query = "USE "+this.getDb_name() + " " + query;
             statement.executeUpdate(query);
         
             return true;
@@ -100,5 +99,4 @@ public class DBConnection {
     public String getDb_name(){
         return db_name;
     }
-    
 }

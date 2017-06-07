@@ -91,7 +91,6 @@ public class SearchMovie implements Serializable {
         MovieCollection movcol = new MovieCollection(MSId.getUserIdBySessionId(), mov.getMovieIdbyTitle());
         movcol.insertMovieCollection();
 
-        
         // Bean Collection killen (Neu-erstellen erzwingen)
         //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("Collection");
         

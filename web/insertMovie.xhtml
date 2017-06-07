@@ -33,8 +33,8 @@
                                     <h:commandButton value="neue(r) Schauspieler(in)" action="#{actor.add}" />
 
                                     <h:dataTable columnClasses="center_content" value="#{actor.actors}" var="actorItem">
-                                    <h:column ><h:selectOneMenu value="#{insertMovie.actor}">
-                                            <f:selectItems value="#{insertMovie.actorList}" />
+                                        <h:column ><h:selectOneMenu value="#{insertMovie.actorName}">
+                                            <f:selectItems value="#{insertMovie.actor}" />
                                                 </h:selectOneMenu>
                         </h:column>
                         <h:column ><h:commandButton value="entfernen" action="#{actor.remove(actorItem)}" /></h:column>

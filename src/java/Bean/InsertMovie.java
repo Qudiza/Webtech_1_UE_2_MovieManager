@@ -36,6 +36,8 @@ public class InsertMovie implements Serializable {
     private String regisseur;
     private ArrayList<String> actor;
 
+    private String actorName;
+    
     private ArrayList<ArrayList<String>> actorList;
     private ArrayList<Genre> genreList;
     
@@ -110,12 +112,12 @@ public class InsertMovie implements Serializable {
     }
     
    
-    public ArrayList<String> getActorList() {
+    public ArrayList<ArrayList<String>> getActorList() {
         return actorList;
     }
 
     
-    public void setActorList(ArrayList<String> actorList) {
+    public void setActorList(ArrayList<ArrayList<String>> actorList) {
         this.actorList = actorList;
     }
     
@@ -138,19 +140,17 @@ public class InsertMovie implements Serializable {
     @PostConstruct
     public void init(){
         if(actorList == null){
-            actorList = new ArrayList<>();    
+            actorList = new ArrayList<ArrayList<String>>();    
         }
         ResultSet rs;
         try {
             
                 rs = DBC.getRS("SELECT actorName FROM actor");
-                if(rs.isBeforeFirst()){
-                }
+                ArrayList<String> actorNameList = new ArrayList<String>(); 
                 while(rs.next()){
-        
-                    String actorName = rs.getString("actorName");
-                    actorList.add(actorName);
+                    actorNameList.add(rs.getString("actorName"));
                 }
+                actorList.add(actorNameList);
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,5 +169,12 @@ public class InsertMovie implements Serializable {
         this.debugMessage = debugMessage;
     }
     
+    public String getActorName() {
+        return actorName;
+    }
+
+    public void setActorName(String actorname) {
+        this.actorName = actorname;
+    }
     
 }

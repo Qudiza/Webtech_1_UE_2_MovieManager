@@ -38,7 +38,13 @@ public class Genre {
     
     public int getGenreIdByGenre() throws SQLException{
       ResultSet rs = DBC.getRS("SELECT genreId FROM genre WHERE genre = '" + genre.getGenre() + "'");
-      rs.next();
+      
+      if(!rs.isBeforeFirst())
+        {
+            return 0;
+        } else {
+          rs.next();
       return rs.getInt(1);
+      }
     }
 }

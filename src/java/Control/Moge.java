@@ -32,9 +32,15 @@ public class Moge {
   public ArrayList<Integer> getMovieIdsWithGenreId() throws SQLException{
         ResultSet rs = DBC.getRS("SELECT movieId FROM moge WHERE genreId = " + moge.getGenreId());
         ArrayList<Integer> result = new ArrayList<Integer>();
-        while (rs.next()) {
+        
+        if(!rs.isBeforeFirst())
+        {
+            return null;
+        } else {
+          while (rs.next()) {
           result.add(rs.getInt(1));
          }
         return result;
+        }
     }
 }

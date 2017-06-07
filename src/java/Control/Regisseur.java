@@ -37,7 +37,13 @@ public class Regisseur {
   }
     public int getRegisseurId() throws SQLException{
         ResultSet rs = DBC.getRS("SELECT regisseurId FROM regisseur WHERE regisseurName = '" + regisseur.getRegisseurName() + "'");
-        rs.next();
-        return rs.getInt(1);
+        
+        if(!rs.isBeforeFirst())
+        {
+            return 0;
+        } else {
+            rs.next();
+            return rs.getInt(1);
+        }
     }
 }

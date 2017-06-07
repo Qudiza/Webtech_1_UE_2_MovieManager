@@ -40,7 +40,12 @@ public class Actor {
   
   public int getActorIdByName() throws SQLException{
       ResultSet rs = DBC.getRS("SELECT actorId FROM actor WHERE actorName = '" + actor.getActorName() + "'");
-      rs.next();
+      if(!rs.isBeforeFirst())
+        {
+            return 0;
+        } else {
+          rs.next();
       return rs.getInt(1);
+      }
   }
 }

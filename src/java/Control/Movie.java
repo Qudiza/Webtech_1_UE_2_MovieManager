@@ -39,16 +39,24 @@ public class Movie {
     public ArrayList<Integer> getMovieIdsWithReleaseDate() throws SQLException{
         ResultSet rs = DBC.getRS("SELECT movieId FROM movie WHERE releaseDate = " + movie.getReleaseDate());
         ArrayList<Integer> result = new ArrayList<>();
-        while (rs.next()) {
+        if(!rs.isBeforeFirst()) {
+            return null;
+        } else {
+            while (rs.next()) {
           result.add(rs.getInt(1));
          }
         return result;
+        }
     }
     
     public int getMovieIdbyTitle() throws SQLException{
         ResultSet rs = DBC.getRS("SELECT movieId FROM movie WHERE title = '" + movie.getTitle() + "'");
-        rs.next();
-        return rs.getInt(1);
+        if(!rs.isBeforeFirst()) {
+            return 0;
+        } else {
+            rs.next();
+            return rs.getInt(1);
+        }
     }
     
 }

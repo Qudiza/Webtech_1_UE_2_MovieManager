@@ -7,6 +7,7 @@
 
 import Control.Search;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -47,15 +48,13 @@ public class Testklasse {
     //   moco2.insertMovieCollection();
     //   moco3.insertMovieCollection();
     
-    Search search = new Search("", 2005, "", "", "AND", true);
-    System.out.println("ERGEBNIS: " + search.generateQuery());
+    // Search search = new Search("", 2005, "", "", "AND", true);
+    // System.out.println("ERGEBNIS: " + search.generateQuery());
    
    //Collection col = new Collection();
    
    //System.out.println(col.collectionHasMovies);
    //System.out.println(col.collectionListSize);
-   
-   
    
     }
 }

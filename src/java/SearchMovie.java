@@ -55,33 +55,23 @@ public class SearchMovie implements Serializable {
 
     public void generateSearchMovie() throws SQLException {
         Search s = new Search(regisseur, releaseDate, actor, genre, operator, initialise);
-        
-        System.out.println("************************ IN SearchMovie ************************");
-        System.out.println("regisseur: " + regisseur);
-        System.out.println("releaseDate: " + releaseDate);
-        System.out.println("actor: " + actor);
-        System.out.println("genre: " + genre);
-        System.out.println("operator: " + operator);
-        System.out.println("initialise: " + initialise);
-        
+
         if(s.getMovieListBySearchQuery(s.generateQuery()) != null) {
             movieList = s.getMovieListBySearchQuery(s.generateQuery());
             hasMovies = true;
         } else {
+            System.out.println("#################################### liste ist NULL ####################################");
             hasMovies = false;
         }
+        System.out.println("########################Listengröße: "+movieList.size() + " ####################################");
         movieListSize = movieList.size();
     }
     
     public int getMovieListSize() {
-        System.out.println("Listengröße: " + movieListSize);
-        System.out.println("Listen: " + movieList);
         return movieListSize;
     }
     
     public String showMovieListItem(int outer, int inner) throws SQLException {
-        System.out.println("outer: " + outer);
-        System.out.println("inner: " + inner);
         return movieList.get(outer).get(inner);
     }
     

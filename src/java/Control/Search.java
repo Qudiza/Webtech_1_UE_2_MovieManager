@@ -44,7 +44,9 @@ public class Search {
                 MovieRegisseur mreg = new MovieRegisseur(regisseurId, 0);
                 ArrayList<Integer> al = mreg.getMovieIdsWithRegisseur();
 
-                return generateWhereOr(al);
+                if(al != null && regisseurId != 0) {
+                    return generateWhereOr(al);
+                }
             }else {
                 //regisseur aus Abfrage rauslassen
             }
@@ -55,7 +57,9 @@ private String getMoviesWithRleaseDate() throws SQLException{
         //filme raussuchen mit releaseDate
         Movie mov = new Movie("", releaseDate);
         ArrayList<Integer> al = mov.getMovieIdsWithReleaseDate();
-        return generateWhereOr(al);
+        if(al != null) {
+            return generateWhereOr(al);
+        }
     }else {
             //releasedate aus abfrage rauslassen
     }
@@ -71,7 +75,9 @@ private String getMoviesWithActor() throws SQLException{
             MovieCharacter mcha = new MovieCharacter("", actorId, 0);
             ArrayList<Integer> al = mcha.getMovieIdsByCharacter();
             
-            return generateWhereOr(al);
+            if(al != null && actorId != 0) {
+                return generateWhereOr(al);
+            }
         }else{
             //actor aus abfrage rauslassen
         }
@@ -86,8 +92,9 @@ private String getMoviesWithGenre() throws SQLException{
             
             Moge mog = new Moge(0, genreId);
             ArrayList<Integer> al = mog.getMovieIdsWithGenreId();
-            
-            return generateWhereOr(al);
+            if(genreId != 0 && al != null) {
+                return generateWhereOr(al);
+            }
         }else{
             //genre aus abfrage rauslassen
         }
@@ -128,28 +135,31 @@ public String generateWhereOr(ArrayList<Integer> al){
     public ArrayList<ArrayList<String>> getMovieListBySearchQuery(String query) throws SQLException{
         ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>(2);
          ResultSet rs = DBC.getRS(query);
-         System.out.println("query aus getMovieList....." + query);
-
-        if(!rs.isBeforeFirst())
-        {
-            return null;
-        } else {
-            
-            int i = 0;
-            while(rs.next()){
-                System.out.println("~~~~~~~~ IN WHILE ~~~~~~~~");
-                System.out.println("Titel: " + rs.getString(1));
-                System.out.println("ReleaseDate: " + Integer.toString(rs.getInt(2)));
+         System.out.println("++++++++++++++++++++++++++++++++++++++ query aus getMovieList....." + query);
+        
+         if(!query.equals("SELECT title, releaseDate FROM movie WHERE")) {
+            if(!rs.isBeforeFirst()) {
+                return null;
+            } else {
+                int i = 0;
+                while(rs.next()){
+                    System.out.println("~~~~~~~~ IN WHILE ~~~~~~~~");
+                    System.out.println("Titel: " + rs.getString(1));
+                    System.out.println("ReleaseDate: " + Integer.toString(rs.getInt(2)));
                 
                 
-                movieList.add(new ArrayList<>());
+                    movieList.add(new ArrayList<>());
 
-                movieList.get(i).add(rs.getString(1));
-                movieList.get(i).add(Integer.toString(rs.getInt(2)));
+                    movieList.get(i).add(rs.getString(1));
+                    movieList.get(i).add(Integer.toString(rs.getInt(2)));
 
-                i++;
-            }
-            return movieList;
-        }
-        }
+                    i++;
+                }
+                return movieList;
+             }
+         } else {
+             // Eingegebener Suchstring ergibt keinen Film
+             return null;
+         }
     }
+}

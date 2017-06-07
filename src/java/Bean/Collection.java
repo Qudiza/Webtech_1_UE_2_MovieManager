@@ -70,11 +70,10 @@ private int collectionListSize = 0;
     }
     
     public String showCollectionItem(int outer, int inner) throws SQLException {
-        
+        /*
         if(!checkRelevanceOfCollection()) {
             generateCollection();
-        }
-        
+        }*/
         return collectionList.get(outer).get(inner);
     }
     

@@ -12,15 +12,13 @@ import Control.ManageSessionId;
 import Control.Movie;
 import Control.MovieCollection;
 import Control.Search;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.validation.constraints.Min;
 
 /**
@@ -92,7 +90,14 @@ public class SearchMovie implements Serializable {
         Movie mov = new Movie((movieList.get(i).get(0)), 1900);
         MovieCollection movcol = new MovieCollection(MSId.getUserIdBySessionId(), mov.getMovieIdbyTitle());
         movcol.insertMovieCollection();
+
         
+        // Bean Collection killen (Neu-erstellen erzwingen)
+        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("Collection");
+        
+        // Collection in Bean Collection neu erstellen
+        //Collection col = (Collection)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Collection");
+        //col.generateCollection();
     }
     
     public String fillFormularData() throws SQLException{
@@ -148,13 +153,6 @@ public class SearchMovie implements Serializable {
     public String goToCollection() {
         return "collection";
     }
-//    @deprecated    
-//    public int getYear(){
-//        Date date = new Date();
-//        int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(date));
-//        
-//        return year;
-//    }
     public boolean checkLoginValidation() throws SQLException {
         return CheckLogin.checkLoginValidation();
     }

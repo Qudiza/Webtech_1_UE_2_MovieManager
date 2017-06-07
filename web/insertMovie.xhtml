@@ -4,86 +4,84 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       >
-    <h:head>
-        <title>insertMovie</title>
-        <link rel="stylesheet" type="text/css" href="myStyle.css"/>
-        <h:outputStylesheet library="css" name="myStyle.css" />
-    </h:head>
-    <h:body>
-        
-        <!--TODO-->
-        <script>
-            function addADiv() {
-            var element = document.createElement("p");
-            var text = document.createTextNode("GenreBeispiel");
-            element.appendChild(text);
-            document.getElementById("right").appendChild(element);
-            }
-        </script>
-        
-        Hier kannst du einen neuen Film anlegen:
-    <h:form>
-        <div class="menueField">
-            <h:commandButton value="Zurück zur Collection" action="#{collection.navigateToCollection()}" class="materialButton"/>
-            <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
-        </div>
-    </h:form>
+        <c:if test="${insertMovie.checkLoginValidation()}">
+        <h:head>
+            <title>insertMovie</title>
+            <link rel="stylesheet" type="text/css" href="myStyle.css"/>
+            <h:outputStylesheet library="css" name="myStyle.css" />
+        </h:head>
+        <h:body>
+
+            <!--TODO-->
+            <script>
+                function addADiv() {
+                var element = document.createElement("p");
+                var text = document.createTextNode("GenreBeispiel");
+                element.appendChild(text);
+                document.getElementById("right").appendChild(element);
+                }
+            </script>
+
+            Hier kannst du einen neuen Film anlegen:
         <h:form>
-            <p>
-                <div id="background" class="insMovBackground">
-                    <div id="left" class="dialogFieldRel">
-                        <a>Film </a><br/><br/>
-                        <a>Titel: </a><br/>
-                        <h:inputText value="#{insertMovie.title}"/> <br/><br/>
-                        <a>Erscheinungsjahr: </a><br/>
-                        <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
-                        <a>Regisseur: </a><br/>
-                        <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
-                    </div>
+            <div class="menueField">
+                <h:commandButton value="Zurück zur Collection" action="#{collection.navigateToCollection()}" class="materialButton"/>
+                <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
+            </div>
+        </h:form>
+            <h:form>
+                <p>
+                    <div id="background" class="insMovBackground">
+                        <div id="left" class="dialogFieldRel">
+                            <a>Film </a><br/><br/>
+                            <a>Titel: </a><br/>
+                            <h:inputText value="#{insertMovie.title}"/> <br/><br/>
+                            <a>Erscheinungsjahr: </a><br/>
+                            <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
+                            <a>Regisseur: </a><br/>
+                            <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
+                        </div>
 
-                    <div id="middle" class="dialogFieldRel">
-                        <a>Schauspieler    </a>
-                        <h:commandButton value="+" action="#{insertMovie.newActor()}" class="materialButtonBottom">
-                    
-                        </h:commandButton> <br/>
-                    <br/><br/>
-                   
-                    
-                    
-                        <a>Schauspieler 1:</a><br/>
-                        <h:inputText value="#{insertMovie.title}"/> <br/><br/>
-                        <a>Schauspieler 2:</a><br/>
-                        <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
-                        <a>Schauspieler 3:</a><br/>
-                        <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
-                        
-                        
-                        
-                        
-                        
-                    </div>
+                        <div id="middle" class="dialogFieldRel">
+                            <a>Schauspieler    </a>
+                            <h:commandButton value="+" action="#{insertMovie.newActor()}" class="materialButtonBottom">
 
-                    <div id="right" class="dialogFieldRel">
-                        <a>Genre    </a>
-                        <!--Funktion des Button? -->
-                        <h:commandButton value="+" action="#{insertMovie.newGenre()}" class="materialButtonBottom">
-                    
-                        </h:commandButton> <br/>
+                            </h:commandButton> <br/>
                         <br/><br/>
-                        <a>Genre </a><br/>
-                        <h:inputText value="#{insertMovie.title}"/> <br/><br/>
-                        <h:commandButton value="weiteres Genre eingeben" onclick="addADiv()" />
+
+
+
+                            <a>Schauspieler 1:</a><br/>
+                            <h:inputText value="#{insertMovie.title}"/> <br/><br/>
+                            <a>Schauspieler 2:</a><br/>
+                            <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
+                            <a>Schauspieler 3:</a><br/>
+                            <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
+
+
+
+
+
+                        </div>
+
+                        <div id="right" class="dialogFieldRel">
+                            <a>Genre    </a>
+                            <!--Funktion des Button? -->
+                            <h:commandButton value="+" action="#{insertMovie.newGenre()}" class="materialButtonBottom">
+
+                            </h:commandButton> <br/>
+                            <br/><br/>
+                            <a>Genre </a><br/>
+                            <h:inputText value="#{insertMovie.title}"/> <br/><br/>
+                            <h:commandButton value="weiteres Genre eingeben" onclick="addADiv()" />
+                        </div>
+                        <br/>
+                        <h:commandButton value="Film eintragen" action="#{insertMovie.insertMovie()}" class="materialButtonBottom">
+                        </h:commandButton> <br/>
+
                     </div>
-                    <br/>
-                    <h:commandButton value="Film eintragen" action="#{insertMovie.insertMovie()}" class="materialButtonBottom">
-                    </h:commandButton> <br/>
-
-                </div>
-          </p>
-       </h:form>
-        
-        
-        
-    </h:body>
+              </p>
+           </h:form>
+        </h:body>
+    </c:if>
 </html>
-

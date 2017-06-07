@@ -4,36 +4,39 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
->      
-     <h:head>
-        <title>Collection</title>
-        <link rel="stylesheet" type="text/css" href="myStyle.css"/>
-        <h:outputStylesheet library="css" name="myStyle.css" />
-        
-    </h:head>
-    <h:body>     
-        Hier siehst du deine persönliche Filmesammlung:
-    </h:body>
+>
+    <c:if test="${collection.checkLoginValidation()}">
+         <h:head>
+            <title>Collection</title>
+            <link rel="stylesheet" type="text/css" href="myStyle.css"/>
+            <h:outputStylesheet library="css" name="myStyle.css" />
 
-    <h:form>
-        <div class="menueField">
-            <h:commandButton value="Neuen Film anlegen" action="#{insertMovie.createMovie()}" class="materialButton"/>
-            <h:commandButton value="SearchMovie" action="#{searchMovie.searchMovie()}" class="materialButton"/>
-            <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
-        </div>
-    </h:form>
-    <h:form>
-        <div class="table">
-                <c:if test="${collection.collectionHasMovies}">
-                    <c:forEach varStatus="o" begin="0" end="#{collection.getCollectionListSize()-1}" step="1">
-                        <c:forEach varStatus="i" begin="0" end="1" step="1">
-                            <h:outputText value="#{collection.showCollectionItem(o.getIndex(),i.getIndex())}"/>
-                            <!-- Tab: -->
-                            &nbsp;
-                        </c:forEach>
-                    <br/>
-                    </c:forEach>
-                 </c:if>
-        </div>
-    </h:form>
+        </h:head>
+        <h:body>     
+            Hier siehst du deine persönliche Filmesammlung:
+        </h:body>
+
+        <h:form>
+            <div class="menueField">
+                <h:commandButton value="Neuen Film anlegen" action="#{insertMovie.createMovie()}" class="materialButton"/>
+                <h:commandButton value="SearchMovie" action="#{searchMovie.searchMovie()}" class="materialButton"/>
+                <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
+            </div>
+        </h:form>
+        <h:form>
+            <c:if test="${collection.collectionHasMovies}">
+                <div class="tableBorder">
+                    <div class="table">
+                            <h:panelGrid columns="2" title="Filmesammlung">
+                                <c:forEach varStatus="o" begin="0" end="#{collection.getCollectionListSize()-1}" step="1">
+                                    <c:forEach varStatus="i" begin="0" end="1" step="1">
+                                        <h:outputText value="#{collection.showCollectionItem(o.getIndex(),i.getIndex())}"/>
+                                    </c:forEach>
+                                </c:forEach>
+                            </h:panelGrid>
+                    </div>
+                </div>
+             </c:if>
+        </h:form>
+    </c:if>
 </html>

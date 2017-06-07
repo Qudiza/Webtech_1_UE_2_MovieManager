@@ -96,4 +96,7 @@ private ArrayList<String> genreList;
     public void newGenre(){
         genreList = new ArrayList<>();
     }
+    public boolean checkLoginValidation() throws SQLException {
+        return CheckLogin.checkLoginValidation();
+    }
 }

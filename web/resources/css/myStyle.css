@@ -56,7 +56,7 @@ background-color: #57B5DA;
 
 .dialogField{
     background: #00BFFF;
-    margin-top: 10%;
+    margin-top: 2%;
     margin-right: 25%;
     margin-left: 25%;
     padding: 50px;
@@ -90,13 +90,22 @@ background-color: #57B5DA;
 .materialButtonBottom:hover, .materialButtonBottom:active {
     background-color: 	#6495ED;
 }
-.table{
+
+.tableBorder{
     margin-top: 5%;
+}
+
+.table{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
     background: #50AD9A;
     display: inline-block;
     border-radius: 3px;
     border: 7px solid #D3DFDE;
-    padding: 500px;
+    
 }
 .materialButton{
     background-color: #1E90FF;

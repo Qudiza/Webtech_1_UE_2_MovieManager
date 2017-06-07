@@ -56,6 +56,12 @@ public class Login implements Serializable {
     }
     
     public String DoLogin() throws SQLException {
+        
+        //Validierun, " " und ";" verbieten
+        if(username.contains(" ") || username.contains(";") || password.contains(" ") || password.contains(";")) {
+            errorMessage = "Eingaben dürfen Weder \"Leerzeichen\" noch \";\" enthalten";
+            return "login";
+        }
         if(LoginValidation())
         {
             errorMessage = "";

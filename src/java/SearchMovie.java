@@ -9,11 +9,16 @@ import Control.ManageSessionId;
 import Control.Movie;
 import Control.MovieCollection;
 import Control.Search;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.validation.constraints.Min;
 
 /**
  *
@@ -21,12 +26,18 @@ import javax.enterprise.context.SessionScoped;
  */
 @Named(value = "searchMovie")
 @SessionScoped
+//@RequestScoped            //achtung, wenn RequestScoped aktiviert ist, können keine Filme mehr der Sammlung hinzugefügt werden
+
 public class SearchMovie implements Serializable {
     
     private ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>();
     private String regisseur, actor, genre, operator;
     private boolean hasMovies = false, initialise = true;
-    private int movieListSize = 0, releaseDate;
+    private int movieListSize = 0;
+    
+    //@Min(1888)            // kann nicht verwendet werden, da releaseDate auch null sein darf (bei und-Verknüpfung ohne releaseDate zu kennen unmöglich)
+    //@Max(getYear())       //geht nicht, weil @Max(value)  value eine Konstante sein muss.
+    private int releaseDate;
     
     /**
      * Creates a new instance of SearchMovie
@@ -77,7 +88,6 @@ public class SearchMovie implements Serializable {
         ManageSessionId MSId = new ManageSessionId(Controller.getActualSessionId());
         Movie mov = new Movie((movieList.get(i).get(0)), 1900);
         MovieCollection movcol = new MovieCollection(MSId.getUserIdBySessionId(), mov.getMovieIdbyTitle());
-        
         movcol.insertMovieCollection();
     }
     
@@ -133,5 +143,15 @@ public class SearchMovie implements Serializable {
     }
     public String goToCollection() {
         return "collection";
+    }
+//    @deprecated    
+//    public int getYear(){
+//        Date date = new Date();
+//        int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(date));
+//        
+//        return year;
+//    }
+    public boolean checkLoginValidation() throws SQLException {
+        return CheckLogin.checkLoginValidation();
     }
 }

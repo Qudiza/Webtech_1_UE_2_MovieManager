@@ -5,9 +5,9 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       >
-        
+    <c:if test="${insertMovie.checkLoginValidation()}">
     <h:head>
-        <c:if test="${insertMovie.checkLoginValidation()}">
+        
         <title>insertMovie</title>
         <link rel="stylesheet" type="text/css" href="myStyle.css"/>
         <h:outputStylesheet library="css" name="myStyle.css" />

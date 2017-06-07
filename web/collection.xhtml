@@ -11,25 +11,27 @@
             <title>Collection</title>
             <link rel="stylesheet" type="text/css" href="myStyle.css"/>
             <h:outputStylesheet library="css" name="myStyle.css" />
-            <ui:include src="WEB-INF/topNavigation.xhtml" />
+            
         </h:head>
         <h:body>
+            <ui:include src="WEB-INF/topNavigation.xhtml" />
             Hier siehst du deine persönliche Filmesammlung:
 
         <h:form>
             <c:if test="${collection.collectionHasMovies}">
                 <div class="tableBorder">
                     <div class="table">
-                            <h:panelGrid columns="2" title="Filmesammlung">
-                                <c:forEach varStatus="o" begin="0" end="#{collection.getCollectionListSize()-1}" step="1">
-                                    <c:forEach varStatus="i" begin="0" end="1" step="1">
-                                        <h:outputText value="#{collection.showCollectionItem(o.getIndex(),i.getIndex())}"/>
-                                    </c:forEach>
+                        <h:panelGrid columns="2" title="Filmesammlung">
+                            <c:forEach varStatus="o" begin="0" end="#{collection.getCollectionListSize()-1}" step="1">
+                                <c:forEach varStatus="i" begin="0" end="1" step="1">
+                                    <h:outputText value="#{collection.showCollectionItem(o.getIndex(),i.getIndex())}"/>
                                 </c:forEach>
-                            </h:panelGrid>
+                            </c:forEach>
+                        </h:panelGrid>
                     </div>
                 </div>
              </c:if>
         </h:form>
+        </h:body>
     </c:if>
 </html>

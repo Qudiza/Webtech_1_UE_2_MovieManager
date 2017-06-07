@@ -84,7 +84,7 @@ private int collectionListSize = 0;
         MovieCollection testMoviecollection = new MovieCollection(testMSId.getUserIdBySessionId(), 0);
         testCollectionList = testMoviecollection.getMovieCollectionByUserId(testMSId.getUserIdBySessionId());
         
-        if(collectionListSize ==testCollectionList.size())
+        if(collectionListSize == testCollectionList.size())
         {
             return true;
         } else {
@@ -103,5 +103,4 @@ private int collectionListSize = 0;
     public boolean checkLoginValidation() throws SQLException {
         return CheckLogin.checkLoginValidation();
     }
-    
 }

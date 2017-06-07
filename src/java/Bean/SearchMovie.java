@@ -92,6 +92,7 @@ public class SearchMovie implements Serializable {
         Movie mov = new Movie((movieList.get(i).get(0)), 1900);
         MovieCollection movcol = new MovieCollection(MSId.getUserIdBySessionId(), mov.getMovieIdbyTitle());
         movcol.insertMovieCollection();
+        
     }
     
     public String fillFormularData() throws SQLException{

@@ -1,3 +1,5 @@
+package Bean;
+
 
 import Control.Controller;
 import Control.ManageSessionId;

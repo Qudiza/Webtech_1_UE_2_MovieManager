@@ -1,3 +1,5 @@
+package Bean;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-
 /**
  *
  * @author Altair
@@ -24,12 +25,14 @@ import javax.inject.Named;
 @SessionScoped
 
 public class InsertMovie implements Serializable {
-private String title;
-private int releaseDate;
-private String regisseur;
-private ArrayList<String> actorList;
-private ArrayList<String> genreList;
+    private String title;
+    private int releaseDate;
+    private String regisseur;
 
+
+    
+    private ArrayList<Genre> genreList;
+    
     /**
      * Creates a new instance of InsertMovie
      */
@@ -81,20 +84,25 @@ private ArrayList<String> genreList;
         MovieRegisseur more = new MovieRegisseur(regId, movieId);
         more.insertMovieRegisseur();
         
-        for(int i = 0; i < actorList.size();i++) {
-            
-        }
-        for(int i = 0; i < genreList.size();i++) {
-            
-        }
+        
         
     }
-    
-    public void newActor(){
-        actorList = new ArrayList<>();
+
+   
+    public ArrayList<Genre> getGenreList() {
+        return genreList;
     }
-    public void newGenre(){
-        genreList = new ArrayList<>();
+
+    
+
+    public void setGenreList(ArrayList<Genre> genreList) {
+        this.genreList = genreList;
+    }
+    
+   
+    
+    public void addGenreToList(String genreName){
+        genreList.add(new Genre(genreName));
     }
     public boolean checkLoginValidation() throws SQLException {
         return CheckLogin.checkLoginValidation();

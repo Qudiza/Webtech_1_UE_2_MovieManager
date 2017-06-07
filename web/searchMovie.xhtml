@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
     <c:if test="${searchMovie.checkLoginValidation()}">
         <h:head>
             <title>Filmsuche</title>
@@ -11,14 +13,7 @@
             <h:outputStylesheet library="css" name="myStyle.css" />
         </h:head>
         <h:body>
-            <h:form>
-                <div class="menueField">
-                    <h:commandButton value="Neuen Film anlegen" action="#{insertMovie.createMovie()}" class="materialButton"/>
-                    <h:commandButton value="Filmsammlung" action="#{searchMovie.goToCollection()}" class="materialButton"/>
-                    <h:commandButton value="Logout" action="#{insertMovie.Logout()}" class="materialButton"/>
-                </div>
-            </h:form>
-
+            <ui:include src="WEB-INF/topNavigation.xhtml" />
             <h:form>
                 <div class="dialogField">
                     <a>regisseur </a><br/>

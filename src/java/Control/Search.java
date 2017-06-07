@@ -5,6 +5,8 @@
  */
 package Control;
 
+import Bean.Genre;
+import Bean.Actor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

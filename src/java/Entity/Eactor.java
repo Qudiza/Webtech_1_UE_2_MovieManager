@@ -19,6 +19,10 @@ public class Eactor {
         this.actorName = actorName;
         this.gender = gender;
     }
+    
+    public Eactor() {
+        //this.actorId = 0;
+    }
 
     public int getActorId() {
         return actorId;

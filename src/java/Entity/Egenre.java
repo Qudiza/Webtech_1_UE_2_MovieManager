@@ -17,6 +17,10 @@ public class Egenre {
         this.genreId = genreId;
         this.genre = genre;
     }
+    
+    public Egenre(){
+        
+    }
 
     public int getGenreId() {
         return genreId;

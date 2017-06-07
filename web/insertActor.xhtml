@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>insertActor</title>
+        <link rel="stylesheet" type="text/css" href="myStyle.css"/>
+        <h:outputStylesheet library="css" name="myStyle.css" />
+    </h:head>
+    <h:body>
+        
+        <!--include Navigation-->
+        <ui:include src="WEB-INF/topNavigation.xhtml" />
+        <ui:include src="WEB-INF/insertMovieNavigation.xhtml" />
+        
+        <!--ActorList -->
+        
+        <h:form>
+            <h:commandButton value="neue(r) Schauspieler(in)" action="#{actor.add}" />
+            <h:commandButton value="save" action="#{actor.save}" />
+
+            <h:dataTable columnClasses="center_content" value="#{actor.actors}" var="actorItem">
+                <h:column >Name:<h:inputText value="#{actorItem.actorName}" /></h:column>
+                <h:column ><h:selectOneRadio value="#{actorItem.gender}">
+                                <f:selectItem itemLabel="Männlich" itemValue="M" />
+                                <f:selectItem itemLabel="Weiblich" itemValue="F" />
+                           </h:selectOneRadio>
+                </h:column>
+                <h:column ><h:commandButton value="entfernen" action="#{actor.remove(actorItem)}" /></h:column>
+            </h:dataTable>
+        </h:form>
+        
+        <h:outputText id="eM" value="#{actor.message}"/>
+        
+    </h:body>
+</html>

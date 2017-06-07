@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to create a P element with some text.</p>
+
+<button onclick="addADiv()">Try it</button>
+
+<script>
+function addADiv() {
+            var element = document.createElement("");
+            var text = document.createTextNode("GenreBeispiel");
+            element.appendChild(text);
+            document.getElementById("right").appendChild(element);
+            }
+</script>
+
+<div id="right">
+Text im ersten div
+</div>
+
+</body>
+</html>

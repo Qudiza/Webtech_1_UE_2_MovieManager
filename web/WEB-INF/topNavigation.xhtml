@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:form>
+        <div class="menueField">
+            <h:link value="Filmsammlung" outcome="collection" />
+            <h:link value="Film suchen" outcome="searchMovie" />
+            <h:link value="Film einfügen" outcome="insertMovie" />
+            <h:commandButton value="Logout" action="#{topNavigationBean.logout()}" class="materialButton"/>
+        </div>
+    </h:form>
+    
+</ui:composition>
+

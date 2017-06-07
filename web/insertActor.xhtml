@@ -23,7 +23,8 @@ and open the template in the editor.
         <ui:include src="WEB-INF/insertMovieNavigation.xhtml" />
         
         <!--ActorList -->
-        
+        <div id="background" class="insMovBackground">
+        <div id="middle" class="dialogField">
         <h:form>
             <h:commandButton value="neue(r) Schauspieler(in)" action="#{actor.add}" />
             <h:commandButton value="save" action="#{actor.save}" />
@@ -38,7 +39,8 @@ and open the template in the editor.
                 <h:column ><h:commandButton value="entfernen" action="#{actor.remove(actorItem)}" /></h:column>
             </h:dataTable>
         </h:form>
-        
+        </div>
+        </div>
         <h:outputText id="eM" value="#{actor.message}"/>
         
     </h:body>

@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      >
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <c:if test="${insertMovie.checkLoginValidation()}">
     <h:head>
         
@@ -20,7 +21,7 @@
             <h:form>
                 <p>
                     <div id="background" class="insMovBackground">
-                        <div id="left" class="dialogFieldRel">
+                        <div id="middle" class="dialogFieldRel">
                             <a>Film </a><br/><br/>
                             <a>Titel: </a><br/>
                             <h:inputText value="#{insertMovie.title}"/> <br/><br/>
@@ -28,6 +29,23 @@
                             <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
                             <a>Regisseur: </a><br/>
                             <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
+                            <a>Schauspieler:</a><br />
+                                    <h:commandButton value="neue(r) Schauspieler(in)" action="#{actor.add}" />
+
+                                    <h:dataTable columnClasses="center_content" value="#{actor.actors}" var="actorItem">
+                                    <h:column ><h:selectOneMenu value="#{insertMovie.actor}">
+                                            <f:selectItems value="#{insertMovie.actorList}" />
+                                                </h:selectOneMenu>
+                        </h:column>
+                        <h:column ><h:commandButton value="entfernen" action="#{actor.remove(actorItem)}" /></h:column>
+                    </h:dataTable> 
+                                    
+                                    
+                                    
+                                    <!--methode ändern -->
+                                    <h:commandButton value="save" action="#{actor.save}" />
+                                    <br />
+                                    
                         </div>
                     </div>
               </p>

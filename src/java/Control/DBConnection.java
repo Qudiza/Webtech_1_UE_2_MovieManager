@@ -71,6 +71,7 @@ public class DBConnection {
             query = "USE "+this.getDb_name() + " " + query;
             ResultSet rs = statement.executeQuery(query);
         
+           
             return rs;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,10 +86,12 @@ public class DBConnection {
             query = "USE "+this.getDb_name() + " " + query;
             statement.executeUpdate(query);
         
+            
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-        }   
+        } 
+        
         return false;
     }
     

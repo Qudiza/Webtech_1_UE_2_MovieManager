@@ -134,20 +134,13 @@ public String generateWhereOr(ArrayList<Integer> al){
     
     public ArrayList<ArrayList<String>> getMovieListBySearchQuery(String query) throws SQLException{
         ArrayList<ArrayList<String>> movieList = new ArrayList<ArrayList<String>>(2);
-         ResultSet rs = DBC.getRS(query);
-         System.out.println("++++++++++++++++++++++++++++++++++++++ query aus getMovieList....." + query);
-        
+         ResultSet rs = DBC.getRS(query);     
          if(!query.equals("SELECT title, releaseDate FROM movie WHERE")) {
             if(!rs.isBeforeFirst()) {
                 return null;
             } else {
                 int i = 0;
                 while(rs.next()){
-                    System.out.println("~~~~~~~~ IN WHILE ~~~~~~~~");
-                    System.out.println("Titel: " + rs.getString(1));
-                    System.out.println("ReleaseDate: " + Integer.toString(rs.getInt(2)));
-                
-                
                     movieList.add(new ArrayList<>());
 
                     movieList.get(i).add(rs.getString(1));

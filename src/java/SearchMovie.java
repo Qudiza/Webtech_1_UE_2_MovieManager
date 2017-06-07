@@ -60,10 +60,8 @@ public class SearchMovie implements Serializable {
             movieList = s.getMovieListBySearchQuery(s.generateQuery());
             hasMovies = true;
         } else {
-            System.out.println("#################################### liste ist NULL ####################################");
             hasMovies = false;
         }
-        System.out.println("########################Listengröße: "+movieList.size() + " ####################################");
         movieListSize = movieList.size();
     }
     
@@ -76,7 +74,6 @@ public class SearchMovie implements Serializable {
     }
     
     public void addToCollection(int i) throws SQLException {
-        System.out.println("************************ IN addToCollection ************************");
         ManageSessionId MSId = new ManageSessionId(Controller.getActualSessionId());
         Movie mov = new Movie((movieList.get(i).get(0)), 1900);
         MovieCollection movcol = new MovieCollection(MSId.getUserIdBySessionId(), mov.getMovieIdbyTitle());

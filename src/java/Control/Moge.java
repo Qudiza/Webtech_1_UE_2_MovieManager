@@ -25,7 +25,7 @@ public class Moge {
   //gibt true zurück, wenn moge-Eintrag erstellt wurde
   public boolean insertMoge() throws SQLException {
       //moge eintragen
-      DBC.executeQuery("INSERT INTO moge VALUES(" + moge.getMovieId() + ", " + moge.getGenreId() + ")");
+      DBC.executeQuery("INSERT INTO moge(movieId, genreId) VALUES(" + moge.getMovieId() + ", " + moge.getGenreId() + ")");
       return true;
   }
   

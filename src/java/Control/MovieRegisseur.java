@@ -32,7 +32,7 @@ public class MovieRegisseur {
         }
         //mysql
         else{
-            DBC.executeQuery("INSERT INTO movieregisseur VALUES('" + movieRegisseur.getRegisseurId() + "', " + movieRegisseur.getMovieId() + ")");
+            DBC.executeQuery("INSERT INTO movieregisseur(regisseurId, movieId) VALUES('" + movieRegisseur.getRegisseurId() + "', " + movieRegisseur.getMovieId() + ")");
         }
      
       return true;

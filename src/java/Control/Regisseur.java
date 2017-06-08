@@ -32,7 +32,7 @@ public class Regisseur {
           }
          }
       //Regisseur eintragen
-      DBC.executeQuery("INSERT INTO regisseur VALUES('" + regisseur.getRegisseurName() + "')");
+      DBC.executeQuery("INSERT INTO regisseur(regisseurName) VALUES('" + regisseur.getRegisseurName() + "')");
       return true;
   }
     public int getRegisseurId() throws SQLException{

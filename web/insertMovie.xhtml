@@ -22,30 +22,53 @@
                 <p>
                     <div id="background" class="insMovBackground">
                         <div id="middle" class="dialogFieldRel">
-                            <a>Film </a><br/><br/>
+                            <h:outputText value="#{insertMovie.message}" /><br/>
+                            <a>Film </a><br/>
+                            <br/> 
                             <a>Titel: </a><br/>
                             <h:inputText value="#{insertMovie.title}"/> <br/><br/>
                             <a>Erscheinungsjahr: </a><br/>
                             <h:inputText value="#{insertMovie.releaseDate}"/> <br/><br/>
                             <a>Regisseur: </a><br/>
                             <h:inputText value="#{insertMovie.regisseur}"/> <br/><br/>
+                            
+                            <!--Schauspieler-->
                             <a>Schauspieler:</a><br />
-                                    <h:commandButton value="neue(r) Schauspieler(in)" action="#{actor.add}" />
-
-                                    <h:dataTable columnClasses="center_content" value="#{actor.actors}" var="actorItem">
-                                        <h:column ><h:selectOneMenu value="#{insertMovie.actorName}">
-                                            <f:selectItems value="#{insertMovie.actor}" />
+                                   
+                            <h:column ><h:selectOneMenu value="#{insertMovie.actor}">
+                                            <f:selectItems value="#{insertMovie.actorList}" />
                                                 </h:selectOneMenu>
-                        </h:column>
-                        <h:column ><h:commandButton value="entfernen" action="#{actor.remove(actorItem)}" /></h:column>
-                    </h:dataTable> 
-                                    
-                                    
-                                    
-                                    <!--methode ändern -->
-                                    <h:commandButton value="save" action="#{actor.save}" />
-                                    <br />
-                                    
+                            </h:column>
+                        
+
+                            <br />Als Charakter: <br />
+                            <h:inputText value="#{insertMovie.movieCharacter}" /> <br />
+                            <h:commandButton value="diesen Schauspieler hinzufügen" action="#{insertMovie.saveActor}" />
+                            <br /><br />
+                            Schauspieler die bisher hinzugefügt wurden: <br />
+                            <ui:repeat value="#{insertMovie.outputString}" var="value">
+                                #{value} <br />
+                            </ui:repeat>
+                            <h:commandButton value="Alle Schauspieler von der Liste löschen" action="#{insertMovie.resetActor}" />
+                            
+                            <br /><br /><br />
+                            <!--Genres-->
+                            <a>Genre(s):</a><br />
+                                   
+                            <h:column ><h:selectOneMenu value="#{insertMovie.genre}">
+                                            <f:selectItems value="#{insertMovie.genreList}" />
+                                                </h:selectOneMenu>
+                            </h:column>
+                       
+                            <h:commandButton value="dieses Genre hinzufügen" action="#{insertMovie.saveGenre}" />
+                            <br /><br />
+                            Genre die bisher hinzugefügt wurden: <br />
+                            <ui:repeat value="#{insertMovie.outputStringGenre}" var="value">
+                                #{value} <br />
+                            </ui:repeat>
+                            <h:commandButton value="Alle Genres von der Liste löschen" action="#{insertMovie.resetGenre}" />
+                            <br /><br /><br />
+                            <h:commandButton value="Diesen Film speichern" action="#{insertMovie.insertMovie}" />
                         </div>
                     </div>
               </p>

@@ -33,7 +33,7 @@ public class Movie {
           }
          }
       //Film eintragen
-      DBC.executeQuery("INSERT INTO movie VALUES('" + movie.getTitle() + "', " + movie.getReleaseDate() + ")");
+      DBC.executeQuery("INSERT INTO movie(title, releaseDate) VALUES('" + movie.getTitle() + "', " + movie.getReleaseDate() + ")");
       return true;
   }
     public ArrayList<Integer> getMovieIdsWithReleaseDate() throws SQLException{

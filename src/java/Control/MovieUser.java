@@ -49,7 +49,7 @@ public class MovieUser {
         }
         //mysql
         else{
-            DBC.executeQuery("INSERT INTO movieuser VALUES('" + movieUser.getUserName() + "', " + movieUser.getUserPassword() + ")");
+            DBC.executeQuery("INSERT INTO movieuser(userName, userPassword) VALUES('" + movieUser.getUserName() + "', " + movieUser.getUserPassword() + ")");
         }
       return true;
   }

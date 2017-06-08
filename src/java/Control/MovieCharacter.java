@@ -49,7 +49,7 @@ public class MovieCharacter {
         }
         //mysql
         else{
-            DBC.executeQuery("INSERT INTO moviecharacter VALUES('" + movieCharacter.getCharacterName() + "', " + movieCharacter.getActorId() + ", " + movieCharacter.getMovieId() + ")");
+            DBC.executeQuery("INSERT INTO moviecharacter(characterName, actorId, movieId) VALUES('" + movieCharacter.getCharacterName() + "', " + movieCharacter.getActorId() + ", " + movieCharacter.getMovieId() + ")");
         }
         //Film eintragen
         

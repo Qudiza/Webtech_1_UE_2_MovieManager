@@ -32,7 +32,7 @@ public class MovieCollection {
         }
         //mysql
         else{
-            DBC.executeQuery("INSERT INTO moviecollection VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
+            DBC.executeQuery("INSERT INTO moviecollection(userId, movieId) VALUES('" + movieCollection.getUserId() + "', " + movieCollection.getMovieId() + ")");
         }
         return true;
   }

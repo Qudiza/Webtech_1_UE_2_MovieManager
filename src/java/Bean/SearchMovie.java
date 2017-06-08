@@ -36,6 +36,8 @@ public class SearchMovie implements Serializable {
     private boolean hasMovies = false, initialise = true;
     private int movieListSize = 0;
     
+    private String message="";
+    
     //@Min(1888)            // kann nicht verwendet werden, da releaseDate auch null sein darf (bei und-Verknüpfung ohne releaseDate zu kennen unmöglich)
     //@Max(getYear())       //geht nicht, weil @Max(value)  value eine Konstante sein muss.
     private int releaseDate;
@@ -155,4 +157,17 @@ public class SearchMovie implements Serializable {
     public boolean checkLoginValidation() throws SQLException {
         return CheckLogin.checkLoginValidation();
     }
+
+    public String getMessage() {
+        if(message.equals("")){
+            return "Suche Filme...";   
+        }
+        return "";
+    }
+
+    public void setMessage(String message) {
+        
+    }
+    
+    
 }

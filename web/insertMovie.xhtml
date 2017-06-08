@@ -12,6 +12,20 @@
         <title>insertMovie</title>
         <link rel="stylesheet" type="text/css" href="myStyle.css"/>
         <h:outputStylesheet library="css" name="myStyle.css" />
+        
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("input").focus(function(){
+                $(this).css("background-color", "#cccccc");
+            });
+            $("input").blur(function(){
+                $(this).css("background-color", "#ffffff");
+            });
+        });
+        </script>
+        
     </h:head>
     <h:body>
         

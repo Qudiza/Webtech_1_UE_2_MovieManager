@@ -23,6 +23,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -55,6 +56,7 @@ public class InsertMovie implements Serializable {
     private ArrayList<String> genresToSave;
     private ArrayList<String> outputStringGenre;
     
+    @NotNull
     private String message="";
     
     /**

@@ -24,6 +24,8 @@ public class Genre {
     private DBConnection DBC = new DBConnection();
 
     private String message;
+    private String suggestion;
+    String name="";
     
     public Genre(String genre) {
         this.genre = new Egenre(0, genre);
@@ -80,4 +82,29 @@ public class Genre {
     public void setMessage(String message){
         this.message = message;
     }
+
+    public String getSuggestion() {
+        if(name.equals("")){
+            setSuggestion("");
+        }
+        else{
+            setSuggestion(getName()+", ich empfehle das Genre: Splatter");
+        }
+        return suggestion;
+    }
+
+    public void setSuggestion(String suggestion) {
+        this.suggestion = suggestion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
+    
 }

@@ -20,7 +20,7 @@
                     <h:inputText value="#{searchMovie.regisseur}"/> <br/><br/>
 
                     <a>releaseDate </a><br/>
-                    <h:inputText value="#{searchMovie.releaseDate}"> <br/><br/>
+                    <h:inputText  value="#{searchMovie.releaseDate}"> <br/><br/>
                         <f:convertNumber pattern="#0000" />
                     </h:inputText> <br/><br/>
                     <a>actor </a><br/>
@@ -38,6 +38,7 @@
                     <br/>
                     <h:commandButton value="Suchen" action="#{searchMovie.fillFormularData}" class="materialButton">
                     </h:commandButton>
+                    
                 </div>
             </h:form>
 
